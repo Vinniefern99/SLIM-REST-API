@@ -20,5 +20,8 @@
     },
     "autoload": {
         "psr-0": { "Slim": "." }
-    }
+    },
+    "require": {
+  		"google/apiclient": "1.0.*@beta"
+	}
 }
