@@ -13,7 +13,7 @@
 			<th>State</th>
 			<th>Click to view all cities:</th>
 		</tr>
-		<?php foreach ($this->data['data'] as $item): ?>
+		<?php foreach ($this->data['state_results_array'] as $item): ?>
 		<tr>
 			<td><?php echo $item['name'] ?></td>
 			<td>

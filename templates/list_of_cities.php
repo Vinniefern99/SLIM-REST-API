@@ -12,7 +12,7 @@
 		<tr>
 			<th>Cities in <?php echo $this->data['state']; ?></th>
 		</tr>
-		<?php foreach ($this->data['data'] as $item): ?>
+		<?php foreach ($this->data['city_results_array'] as $item): ?>
 		<tr>
 			<td><?php echo $item['name'] ?></td>
 		</tr>

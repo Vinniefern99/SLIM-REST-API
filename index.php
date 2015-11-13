@@ -11,14 +11,9 @@ $app = new \Slim\Slim ();
  */
 $app->get ( '/', function () use($app) {
 	$db = connect_db ();
-	$result2 = $db->query ( 'SELECT user_id, first_name, last_name FROM user;' );
-	while ( $row2 = $result2->fetch_array ( MYSQLI_ASSOC ) ) {
-		$data2 [] = $row2;
-	}
 	
 	$app->render ( './homepage.php', array (
 			'page_title' => "My Visits App",
-			'data2' => $data2 
 	) );
 } );
 
@@ -27,14 +22,14 @@ $app->get ( '/', function () use($app) {
  */
 $app->get ( '/state', function () use($app) {
 	$db = connect_db ();
-	$result = $db->query ( 'SELECT name FROM state;' );
-	while ( $row = $result->fetch_array ( MYSQLI_ASSOC ) ) {
-		$data [] = $row;
+	$state_results = $db->query ( 'SELECT name FROM state;' );
+	while ( $row = $state_results->fetch_array ( MYSQLI_ASSOC ) ) {
+		$state_results_array [] = $row;
 	}
 	
 	$app->render ( 'state.php', array (
 			'page_title' => "All States",
-			'data' => $data 
+			'state_results_array' => $state_results_array 
 	) );
 } );
 
@@ -43,13 +38,13 @@ $app->get ( '/state', function () use($app) {
  */
 $app->get ( '/state/:state/cities', function ($state) use($app) {
 	$db = connect_db ();
-	$result = $db->query ( "SELECT name FROM city WHERE state in (SELECT abbreviation FROM state where name = '$state');" );
+	$city_results = $db->query ( "SELECT name FROM city WHERE state in (SELECT abbreviation FROM state where name = '$state');" );
 	
-	while ( $row = $result->fetch_array ( MYSQLI_ASSOC ) ) {
-		$data [] = $row;
+	while ( $row = $city_results->fetch_array ( MYSQLI_ASSOC ) ) {
+		$city_results_array [] = $row;
 	}
 	
-	if (! isset ( $data )) {
+	if (! isset ( $city_results_array )) {
 		$app->render ( 'end_page.php', array (
 				'page_title' => "No Records",
 				'text_to_display' => "There are no cities in $state. Click Back to try again" 
@@ -59,7 +54,7 @@ $app->get ( '/state/:state/cities', function ($state) use($app) {
 	
 	$app->render ( 'list_of_cities.php', array (
 			'page_title' => "All Cities in $state",
-			'data' => $data,
+			'city_results_array' => $city_results_array,
 			'state' => $state 
 	) );
 } );
