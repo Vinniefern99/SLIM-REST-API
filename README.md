@@ -5,8 +5,6 @@ I used the Slim PHP framework to build this API, and MAMP to run the MySql serve
 
 To prevent any invalid input from the user, I created my web application to not allow any sort of text input. For example, if the user wants to add a visit, they must chose from the list of cities that are stored in the database. If I were to add functionality to say..add a city to the list of cities, I would add some sanitation logic to validate the input from the user. But for the sake of this application, I decided to keep it enclosed and protected.
 
-Note about the city table: I added a field 'state' in order to perfom the necessary joins with the state table. 
-
 Note about the required DELETE endpoint: I was having problems implementing the DELETE endpoint, so I used a POST. I've been trained to stay away from the DELETE http method because some browsers do not support it.
 
 ## To run the server locally:
