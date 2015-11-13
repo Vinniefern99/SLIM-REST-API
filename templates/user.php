@@ -10,14 +10,15 @@
 	<br />
 	<table>
 		<tr>
-			<th>State</th>
-			<th>Click to view all cities:</th>
+			<th>Users</th>
+			<th>Visits:</th>
 		</tr>
 		<?php foreach ($this->data['data'] as $item): ?>
 		<tr>
-			<td><?php echo $item['name'] ?></td>
+			<td><?php echo $item['first_name'] . " " . $item['last_name']?></td>
 			<td>
-				<form action="state/<?php echo $item['name'] ?>/cities" method="GET">
+				<form action="user/<?php echo $item['user_id'] ?>/visits"
+					method="GET">
 					<input type="submit" value="Cities">
 				</form>
 			</td>

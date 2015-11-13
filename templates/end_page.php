@@ -10,13 +10,8 @@
 	<br />
 	<table>
 		<tr>
-			<th>Cities in <?php echo $this->data['state']; ?></th>
+			<th><?php echo $this->data['text_to_display']; ?></th>
 		</tr>
-		<?php foreach ($this->data['data'] as $item): ?>
-		<tr>
-			<td><?php echo $item['name'] ?></td>
-		</tr>
-		<?php endforeach; ?>
 	</table>
 </body>
 </html>
