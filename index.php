@@ -64,14 +64,14 @@ $app->get ( '/state/:state/cities', function ($state) use($app) {
  */
 $app->get ( '/user', function () use($app) {
 	$db = connect_db ();
-	$result = $db->query ( 'SELECT first_name, last_name, user_id FROM user;' );
-	while ( $row = $result->fetch_array ( MYSQLI_ASSOC ) ) {
-		$data [] = $row;
+	$user_results = $db->query ( 'SELECT first_name, last_name, user_id FROM user;' );
+	while ( $row = $user_results->fetch_array ( MYSQLI_ASSOC ) ) {
+		$user_results_array [] = $row;
 	}
 	
 	$app->render ( 'user.php', array (
 			'page_title' => "All Users",
-			'data' => $data 
+			'user_results_array' => $user_results_array 
 	) );
 } );
 
@@ -81,10 +81,10 @@ $app->get ( '/user', function () use($app) {
 $app->get ( '/user/:user/visits', function ($user) use($app) {
 	
 	$db = connect_db ();
-	$result = $db->query ( "SELECT city, state_abbreviation, visit_id FROM visits WHERE user_id = '$user';" );
-	$data = [ ];
-	while ( $row = $result->fetch_array ( MYSQLI_ASSOC ) ) {
-		$data [] = $row;
+	$visit_results = $db->query ( "SELECT city, state_abbreviation, visit_id FROM visits WHERE user_id = '$user';" );
+	$visit_results_array = [ ];
+	while ( $row = $visit_results->fetch_array ( MYSQLI_ASSOC ) ) {
+		$visit_results_array [] = $row;
 	}
 	
 	$user_record = $db->query ( "SELECT first_name, last_name, user_id FROM user WHERE user_id = '$user';" );
@@ -92,21 +92,21 @@ $app->get ( '/user/:user/visits', function ($user) use($app) {
 	$user_id = $exctract_user_record ['user_id'];
 	$full_name = $exctract_user_record ['first_name'] . " " . $exctract_user_record ['last_name'];
 	
-	$result3 = $db->query ( "SELECT name,state FROM city;" );
-	while ( $row3 = $result3->fetch_array ( MYSQLI_ASSOC ) ) {
-		$data3 [] = $row3;
+	$city_results = $db->query ( "SELECT name,state FROM city;" );
+	while ( $row3 = $city_results->fetch_array ( MYSQLI_ASSOC ) ) {
+		$city_results_array [] = $row3;
 	}
 	
-	$result4 = $db->query ( "SELECT abbreviation FROM state;" );
-	while ( $row4 = $result4->fetch_array ( MYSQLI_ASSOC ) ) {
-		$data4 [] = $row4;
+	$state_results = $db->query ( "SELECT abbreviation FROM state;" );
+	while ( $row4 = $state_results->fetch_array ( MYSQLI_ASSOC ) ) {
+		$state_results_array [] = $row4;
 	}
 	
 	$app->render ( 'user_visits.php', array (
 			'page_title' => "All visits by this user",
-			'data' => $data,
-			'data3' => $data3,
-			'data4' => $data4,
+			'visit_results_array' => $visit_results_array,
+			'city_results_array' => $city_results_array,
+			'state_results_array' => $state_results_array,
 			'user' => $user,
 			'full_name' => $full_name 
 	) );
@@ -118,13 +118,13 @@ $app->get ( '/user/:user/visits', function ($user) use($app) {
 $app->get ( '/user/:user/visits/states', function ($user) use($app) {
 	
 	$db = connect_db ();
-	$result = $db->query ( "SELECT name FROM state WHERE abbreviation IN (SELECT state_abbreviation FROM visits WHERE user_id = '$user');" );
+	$visits_results = $db->query ( "SELECT name FROM state WHERE abbreviation IN (SELECT state_abbreviation FROM visits WHERE user_id = '$user');" );
 	
-	while ( $row = $result->fetch_array ( MYSQLI_ASSOC ) ) {
-		$data [] = $row;
+	while ( $row = $visits_results->fetch_array ( MYSQLI_ASSOC ) ) {
+		$visits_results_array [] = $row;
 	}
 	
-	if (! isset ( $data )) {
+	if (! isset ( $visits_results_array )) {
 		$app->render ( 'end_page.php', array (
 				'page_title' => "No Records",
 				'text_to_display' => "This user has never travelled. Click Back to add visits." 
@@ -134,7 +134,7 @@ $app->get ( '/user/:user/visits/states', function ($user) use($app) {
 	
 	$app->render ( 'user_visits_state.php', array (
 			'page_title' => "All visits by this user",
-			'data' => $data 
+			'visits_results_array' => $visits_results_array 
 	) );
 } );
 

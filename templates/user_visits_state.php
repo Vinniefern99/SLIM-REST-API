@@ -12,7 +12,7 @@
 		<tr>
 			<th>State this user has visited:</th>
 		</tr>
-		<?php foreach ($this->data['data'] as $item): ?>
+		<?php foreach ($this->data['visits_results_array'] as $item): ?>
 		<tr>
 			<td><?php echo $item['name'] ?></td>
 		</tr>

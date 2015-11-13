@@ -14,7 +14,7 @@
 		<tr>
 			<th align="left">Cities travelled to by <?php echo $this->data['full_name']; ?>:</th>
 		</tr>
-		<?php foreach ($this->data['data'] as $item): ?>
+		<?php foreach ($this->data['visit_results_array'] as $item): ?>
 		<tr>
 			<td><?php echo $item['city'] . ", " . $item['state_abbreviation']?></td>
 			<td>
@@ -33,11 +33,11 @@
 			<th align="left">
 				<form action="visits" method="POST">
 					Add the following city: <select name="city" id="city">
-		    			<?php foreach ($this->data['data3'] as $item): ?>
+		    			<?php foreach ($this->data['city_results_array'] as $item): ?>
   						<option value="<?php echo $item['name'] ?>"><?php echo $item['name'] . ", " . $item['state']?></option>
   						<?php endforeach; ?>
 					</select> Verify state: <select name="state" id="state">
-		    			<?php foreach ($this->data['data4'] as $item): ?>
+		    			<?php foreach ($this->data['state_results_array'] as $item): ?>
   						<option value="<?php echo $item['abbreviation'] ?>"><?php echo $item['abbreviation']?></option>
   						<?php endforeach; ?>
 					</select> <input type="submit" value="Submit" />

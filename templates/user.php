@@ -15,7 +15,7 @@
 			<th>Users</th>
 			<th>Visits:</th>
 		</tr>
-		<?php foreach ($this->data['data'] as $item): ?>
+		<?php foreach ($this->data['user_results_array'] as $item): ?>
 		<tr>
 			<td><?php echo $item['first_name'] . " " . $item['last_name']?></td>
 			<td>
