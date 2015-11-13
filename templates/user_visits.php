@@ -5,7 +5,9 @@
 <title><?php echo $this->data['page_title']; ?></title>
 </head>
 <body>
-	<button onclick="history.go(-1);">Back</button>
+	<form action="/slim-rest-api/index.php/user" method="get">
+		<input type="submit" value="Back">
+	</form>
 	<br />
 	<br />
 	<table>
@@ -17,8 +19,9 @@
 			<td><?php echo $item['city'] . ", " . $item['state_abbreviation']?></td>
 			<td>
 				<form action="visit/<?php echo $item['visit_id']?>" method="post">
-					<input type="hidden" name = "visit_id" value="<?php echo $item['visit_id'] ?>">
-					<input type="submit" value="Click to Delete">
+					<input type="hidden" name="visit_id"
+						value="<?php echo $item['visit_id'] ?>"> <input type="submit"
+						value="Click to Delete">
 				</form>
 			</td>
 		</tr>

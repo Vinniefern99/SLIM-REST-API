@@ -81,7 +81,7 @@ $app->get ( '/user', function () use($app) {
 } );
 
 /*
- * View the cities that a user has visited
+ * View all cities a user has visited
  */
 $app->get ( '/user/:user/visits', function ($user) use($app) {
 	
@@ -144,8 +144,7 @@ $app->get ( '/user/:user/visits/states', function ($user) use($app) {
 } );
 
 /*
- * 2. Create rows of data to indicate they have visited a particular city.
- * POST /user/{user}/visits`
+ * Create rows of data to indicate they have visited a particular city.
  */
 $app->post ( '/user/:user/visits', function ($user) use($app) {
 	$city = $app->request->post ( 'city' );
@@ -171,33 +170,31 @@ $app->post ( '/user/:user/visits', function ($user) use($app) {
 	$app->render ( 'end_page_modify.php', array (
 			'page_title' => "No Records",
 			'user' => $user,
-			'text_to_display' => "Visit has been added. Click Back to return."
+			'text_to_display' => "Visit has been added. Click Back to return." 
 	) );
 } );
 
 /*
- * 3. Allow a user to remove an improperly pinned visit.
- * `DEL /user/{user}/visit/{visit}`
+ * Allow a user to remove an improperly pinned visit.
  */
-$app->post ( '/user/:user/visit/:visit', function ($user, $visit) use($app){
+$app->post ( '/user/:user/visit/:visit', function ($user, $visit) use($app) {
 	
 	$visit_id = $app->request->post ( 'visit_id' );
 	
 	$db = connect_db ();
 	$sql = "DELETE FROM visits WHERE visit_id = '$visit_id';";
 	
-	if ($db->query($sql) === TRUE) {
+	if ($db->query ( $sql ) === TRUE) {
 		echo "Record deleted successfully";
 	} else {
 		echo "Error deleting record: " . $conn->error;
 	}
 	
 	$app->render ( 'end_page_modify.php', array (
-				'page_title' => "No Records",
-				'user' => $user,
-				'text_to_display' => "Visit succussfully deleted. Click Back or exit." 
-		) );
+			'page_title' => "No Records",
+			'user' => $user,
+			'text_to_display' => "Visit succussfully deleted. Click Back or exit." 
+	) );
 } );
-
 
 $app->run ();

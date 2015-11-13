@@ -32,6 +32,10 @@
         "psr-0": {
             "MyApp": "src/"
         }
+    },
+    "require": {
+        "akrabat/rka-slim-controller": "~1.0"
     }
+    
 	
 }

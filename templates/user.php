@@ -5,7 +5,9 @@
 <title><?php echo $this->data['page_title']; ?></title>
 </head>
 <body>
-	<button onclick="history.go(-1);">Back</button>
+	<form action="/slim-rest-api" method="get">
+		<input type="submit" value="Back">
+	</form>
 	<br />
 	<br />
 	<table>
