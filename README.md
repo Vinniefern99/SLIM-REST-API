@@ -14,9 +14,9 @@ Note about the required DELETE endpoint: I was having problems implementing the 
 I loaded the database schema into the /data/data_schema.txt. That file contains the inserts needed to create the database locally. Run these SQL statements to upload the  data to MySql.
 
 Four tables:
-rest_api_data.city
-rest_api_data.state
-rest_api_data.user
+rest_api_data.city, 
+rest_api_data.state, 
+rest_api_data.user, 
 rest_api_data.visits
 
 Go to 'http://localhost:8888/slim-rest-api/' to start at the homepage of my project. If you have any issues, see the the Slim Framework user guide here: http://docs.slimframework.com/start/get-started/
