@@ -9,15 +9,17 @@ Note about the required DELETE endpoint: I was having problems implementing the 
 
 ## To run the server locally:
 1. Install MAMP on your local machine in order to set up the database. 
-2. Clone my project in the /Applications/MAMP/htdocs dirctory (if you are using a mac). If you are using a PC, the MAMP folder is most likely in C:/Program Files
+2. Clone my project in the /Applications/MAMP/htdocs/ dirctory (if you are using a mac). If you are using a PC, the MAMP folder is most likely in C:/Program Files
 	
-I loaded the database schema into the /data/data_schema.txt. That file contains the inserts needed to create the database locally. Run these SQL statements to upload the  data to MySql.
+I loaded the database schema here: /data/data_schema.txt. This file contains the inserts needed to create the database locally. Run these SQL statements to upload the  data to MySql.
+
+Database name: rest_api_data.
 
 Four tables:
-rest_api_data.city, 
-rest_api_data.state, 
-rest_api_data.user, 
-rest_api_data.visits
+city, 
+state, 
+user, 
+visits
 
 Go to 'http://localhost:8888/slim-rest-api/' to start at the homepage of my project. If you have any issues, see the the Slim Framework user guide here: http://docs.slimframework.com/start/get-started/
 
